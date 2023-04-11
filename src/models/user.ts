@@ -1,6 +1,4 @@
-export interface User {
+import type { IUser } from '../../../backend/src/models/user'
+export interface User extends IUser {
   _id: string
-  name: string
-  email: string
-  password: string
 }
