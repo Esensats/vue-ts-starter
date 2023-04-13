@@ -2,8 +2,9 @@
   "name": "frontend",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host 127.0.0.1",
     "dev:host": "vite --host 0.0.0.0",
     "build": "run-p type-check build-only",
     "preview": "vite preview",

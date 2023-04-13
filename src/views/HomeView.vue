@@ -1,19 +1,20 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-const roles = ref([])
+import { api } from '@/api'
+const users = ref([])
 
-fetch('/api/v1/roles')
-  .then((res) => res.json())
-  .then((json) => {
-    roles.value = json
-  })
+api.get('/users').then((res) => {
+  users.value = res.data
+})
 </script>
 
 <template>
   <main>
     <div class="container">
-      <template v-if="roles && roles.length">
-        <div class="item" v-for="role in roles" :key="role._id">{{ role.name }}</div>
+      <template v-if="users && users.length">
+        <div class="item" v-for="user in users" :key="user._id">
+          {{ user.name + ' - ' + user.email }}
+        </div>
       </template>
     </div>
   </main>

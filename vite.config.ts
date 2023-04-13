@@ -1,6 +1,6 @@
 // import { fileURLToPath, URL } from 'node:url'
 import * as path from 'path'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Unfonts from 'unplugin-fonts/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
@@ -8,10 +8,10 @@ import svgLoader from 'vite-svg-loader'
 // import EnvironmentPlugin from 'vite-plugin-environment'
 
 // https://vitejs.dev/config/
-export default ({ mode }) => {
-  process.env = { ...process.env, ...loadEnv(mode, process.cwd()) }
+export default defineConfig(({ mode }) => {
+  // const env = loadEnv(mode, process.cwd(), '')
 
-  return defineConfig({
+  return {
     plugins: [
       // EnvironmentPlugin('all'),
       vue(),
@@ -46,5 +46,5 @@ export default ({ mode }) => {
         }
       }
     }
-  })
-}
+  }
+})

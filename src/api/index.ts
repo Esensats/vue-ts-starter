@@ -23,19 +23,15 @@ api.interceptors.request.use(
   }
 )
 
-api.interceptors.response.use(
-  (response) => {
-    // Redirect to /auth and remove token on 401 - Unauthorized.
-    if (401 === response.status) {
-      console.error(
-        new Error('401 Unauthorized. Redirecting to the authorization page.')
-      )
-      setLocalToken()
-      // router.push('/auth')
-    }
-    return response
+api.interceptors.response.use((response) => {
+  // Redirect to /auth and remove token on 401 - Unauthorized.
+  if (401 === response.status) {
+    console.error(new Error('401 Unauthorized. Redirecting to the authorization page.'))
+    setLocalToken()
+    router.push('/auth')
   }
-)
+  return response
+})
 
 export function setLocalToken(token?: string) {
   if (token) localStorage.setItem('pmedia-token', token)
@@ -44,6 +40,14 @@ export function setLocalToken(token?: string) {
 
 export function getLocalToken(): string | null {
   return localStorage.getItem('pmedia-token')
+}
+
+export function isGuest(): boolean {
+  return !localStorage.getItem('pmedia-token')
+}
+
+export function isAuth(): boolean {
+  return !isGuest()
 }
 
 export { api }
