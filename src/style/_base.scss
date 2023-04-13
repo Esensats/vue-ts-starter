@@ -31,3 +31,16 @@ body {
     flex-direction: column;
     font-weight: normal;
 }
+a,
+.green {
+    text-decoration: none;
+    color: var(--clr-green);
+    transition: 0.4s;
+}
+
+@media (hover: hover) {
+    a:hover {
+        background-color: rgba(var(--clr-green-rgb), 0.2);
+    }
+}
+
